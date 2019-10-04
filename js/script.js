@@ -1,6 +1,9 @@
 let currentPage = 1;
 let totalPages = 0;
 let pageCounter = document.querySelector(`p`)
+keyPress(13)
+keyPress(37)
+keyPress(39)
 
 document.querySelector(`button.search`).addEventListener(`click`, async () =>{
     //hämta bilder
@@ -45,44 +48,56 @@ document.querySelector(`button.next`).addEventListener(`click`, async () => {
     }
 });
 
-document.querySelector(`input`).addEventListener(`keyup`, async () =>{
-    if(event.keyCode == 13){
-    //hämta bilder
-    let images = await getImages();
-    //uppdatera UI
-    pages()
-    showButtons()
-    updateUI(images);
+async function keyPress(key){
+    if(key == 13){
+        document.querySelector(`input`).addEventListener(`keyup`, async () =>{
+            if(event.keyCode == 13){
+            //hämta bilder
+            let images = await getImages();
+            //uppdatera UI
+            pages()
+            showButtons()
+            updateUI(images);
+        }    
+        })
     }
-})
+    if(key == 39){
+        window.addEventListener(`keyup`, async () => {
 
-window.addEventListener(`keyup`, async () => {
-
-    if(event.keyCode == 39){
-    
-    if(currentPage <= totalPages){
-    currentPage++;
-    let images = await getImages();
-    pages()
-    showButtons()
-    updateUI(images);
-        }
+            if(event.keyCode == 39){
+            if(currentPage <= totalPages){
+            currentPage++;
+            let images = await getImages();
+            pages()
+            showButtons()
+            updateUI(images);
+                }
+        }}
+        );
     }
-});
+    if(key == 37){
+        window.addEventListener(`keyup`, async () => {
 
-window.addEventListener(`keyup`, async () => {
-
-    if(event.keyCode == 37){
-    
-    if(currentPage <= totalPages){
-    currentPage--;
-    let images = await getImages();
-    pages()
-    showButtons()
-    updateUI(images);
-        }
+            if(event.keyCode == 37){
+            
+            if(currentPage <= totalPages){
+            currentPage--;
+            let images = await getImages();
+            pages()
+            showButtons()
+            updateUI(images);
+                }
+        }}
+        );
     }
-});
+
+}
+
+
+
+
+
+
 
 document.querySelector(`button.previous`).addEventListener(`click`, async () => {
     if(currentPage >= 1){
