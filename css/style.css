@@ -1,0 +1,247 @@
+body{
+    margin: 0;
+    background: #f2f5f7;
+}
+
+button{
+    background-color: #222;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+
+button:hover{
+    cursor: pointer;
+}
+
+header{
+    margin: 0 auto 1rem auto;
+    padding-bottom: 2rem;
+    display: grid;
+    background: #f2f5f7;
+    grid-template-columns: 1fr 400px 400px 1fr;
+    grid-template-rows: auto;
+    max-width: 1000px;
+    grid-template-areas:
+    ". h1 h1 ."
+    ". input input ."
+    ". perpage content ."
+    ". button button."
+}
+
+header img.logo:hover{
+    cursor: pointer;
+}
+
+header img{
+    grid-area: h1;
+    height: 4rem;
+    justify-self: center;
+    margin: 1rem 0;
+}
+
+header input{
+    grid-area: input;
+    background: #222;
+    color: white;
+    border-radius: 4px;
+    width: 200px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    font-size: 1rem;
+    height: 2.16rem;
+    text-align: center;
+    margin: 0 auto;
+}
+header input:focus {
+    width: 20rem;
+  }
+
+header select#content{
+    grid-area: content;
+    background: #222;
+    color: white;
+    border-radius: 4px;
+    height: 2.16rem;
+    text-align: center;
+    width: 10rem;
+}
+
+
+header button.search{
+    grid-area: button;
+    border-radius: 4px;
+    height: 2rem;
+    font-size: 1rem;
+    width: 20rem;
+    margin:  auto;
+}
+
+header select#perpage{
+    grid-area: perpage;
+    background: #222;
+    color: white;
+    border-radius: 4px;
+    width: 10rem;
+    margin-left: auto;
+}
+
+section.images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: grid;
+    max-width: 800px;
+    background: #f2f5f7;
+    grid-template-columns: repeat(4, 150px);
+    grid-auto-rows: 152px;
+    grid-template-areas: 
+    "img img img img";
+    gap: 1rem;
+    padding: 1rem;
+    grid-area:
+    img;
+}
+
+main img {
+    filter: saturate(0.6);
+    transition: all .2s ease;
+    border-radius: 4px;
+}
+
+main img:hover{
+    filter: saturate(1);
+    border: 2px #222 solid;
+    border-radius: 6px;
+}
+
+section.overlay {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 3;
+    position: fixed;
+  
+}
+
+section.overlay.hide{
+    animation: fade .3s ease forwards;
+    display: none;
+    z-index: 0;
+}
+
+section.overlay.show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fade .3s ease forwards;
+    margin: 0;
+}
+
+section.overlay.show img {
+    max-height: 80%;
+    max-width: 80%;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    height: 20vh;
+    width: 100%;
+    background: #eee;
+}
+
+
+button.previous{
+    position: fixed;
+    bottom: 0;
+    margin: 0 0 5rem 5rem;
+    width: 5rem;
+    height: 3rem;
+    border-radius: 6px;
+    z-index: 2;
+    visibility: hidden;
+}
+
+button.next{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 0 5rem 5rem 0;
+    width: 5rem;
+    height: 3rem;
+    border-radius: 6px;
+    z-index: 2;
+    visibility: hidden;
+}
+
+@keyframes fade{
+    from {opacity: 0}
+        to {opacity: 1}
+}
+
+
+@media screen and (max-width: 800px){ 
+
+    main {
+        grid-template-columns: 152px 152px;
+        grid-template-areas: 
+        "img";
+        grid-auto-rows: 152px;
+    }
+
+    header{
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "h1"
+        "input"
+        "button"
+        "perpage"
+        "content";
+    }
+
+    header img.logo{
+        font-size: 1rem;
+    }
+
+    header button.search{
+        margin-top: .2rem;
+        margin-bottom: .5rem;
+    }
+
+    header select#perpage{
+        margin-bottom: .2rem;
+        font-size: 1rem;
+        margin:  auto;
+    }
+
+    header select#content{
+        font-size: 1rem;
+        height: 1.5rem;
+        margin-bottom: 1rem; 
+        margin: 0 auto;
+    }
+
+    button.next {
+        z-index: 2;
+        width: 3rem;
+        height: 2rem;
+        margin-right: 2rem;
+
+    }
+
+    button.previous{
+        z-index: 2;
+        width: 3rem;
+        height: 2rem;
+        margin-left: 2rem;
+    }
+
+
+
+}
